@@ -22,7 +22,7 @@ class Main extends PluginBase implements Listener {
         if (!file_exists($this->getDataFolder())) {
             mkdir($this->getDataFolder());
         }
-        
+
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array("restrictspectator" => true, "nopermspectator" => "You do not have permission to use Spectator Mode", "nopermsgamemodeother" => "You cannot change other players gamemode", "playernogm" => "You cannot change that players gamemode"));
     }

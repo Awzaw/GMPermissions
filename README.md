@@ -1,5 +1,6 @@
 # GMPermissions
-###### Credit and thanks to Wolfdale for writing the first version of this plugin
+###### Credit and thanks to WolfDale for writing the first version of this plugin
+
 
 GMPermissions is a simple PocketMine plugin that adds permissions to limit access to gamemode commands.
 
