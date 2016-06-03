@@ -1,0 +1,14 @@
+name: GMPermissions
+main: GMPermissions\Main
+version: 1.0.2
+api: [1.12.0,1.13.0,1.14.0,2.0.0]
+load: POSTWORLD
+author: wolfdale/awzaw
+description: Restrict users from changing their/others gamemode
+permissions:
+  gmchange.others:
+    description: Allows users to change others gamemode
+    default: op
+  gmchange.spectator:
+    description: Allows users to gamemode spectator
+    default: op
