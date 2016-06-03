@@ -1,8 +1,9 @@
 # GMPermissions
+###### Credit and thanks to Wolfdale for writing the first version of this plugin
 
-A PocketMine plugin which adds permissions to limit access to gamemode commands
+GMPermissions is a simple PocketMine plugin that adds permissions to limit access to gamemode commands.
 
-PERMISSIONS:
+**PERMISSIONS:**
 
 gmchange.others
 
@@ -14,3 +15,6 @@ their own gamemode.
 Give the gmchange.others permission to allow players to change anyone's gamemode
 
 Give the gmchange.spectator permission to allow players to use spectator mode
+
+
+
