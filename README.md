@@ -5,6 +5,7 @@ A PocketMine plugin which adds permissions to limit access to gamemode commands
 PERMISSIONS:
 
 gmchange.others
+
 gmchange.spectator
 
 Use the normal pocketmine.command.gamemode permission to give players the ability to change
