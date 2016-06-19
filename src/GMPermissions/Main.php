@@ -28,7 +28,6 @@ class Main extends PluginBase implements Listener {
     }
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args) {
-        if (!($issuer instanceof Player)) return;
         if ((strtolower($cmd->getName()) == "nogm") && ($issuer instanceof Player) && ($issuer->hasPermission("gmchange.nogm"))) {
             if (isset($this->enabled[strtolower($issuer->getName())])) {
                 unset($this->enabled[strtolower($issuer->getName())]);
