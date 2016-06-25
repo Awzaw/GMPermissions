@@ -15,8 +15,11 @@ permissions:
     description: Allows users to change others gamemode
     default: op
   gmchange.spectator:
-    description: Allows users to gamemode spectator
+    description: Allows users to use spectator mode
     default: op
   gmchange.nogm:
     description: Disable your own gamemode changes by others
+    default: op
+  gmchange.creative:
+    description: Allowed Creative Mode
     default: op
