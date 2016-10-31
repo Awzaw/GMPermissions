@@ -1,6 +1,6 @@
 name: GMPermissions
 main: GMPermissions\Main
-version: 1.0.5
+version: 1.0.7
 api: [2.0.0]
 load: POSTWORLD
 author: wolfdale/awzaw
@@ -11,15 +11,19 @@ commands:
   usage: "/nogm"
   permission: gmchange.nogm
 permissions:
-  gmchange.others:
+ gmchange:
+  default: op
+  description: Allows unrestricted changes to gamemode for self and to others
+  children:
+   gmchange.others:
     description: Allows users to change others gamemode
-    default: op
-  gmchange.spectator:
+    default: false
+   gmchange.spectator:
     description: Allows users to use spectator mode
-    default: op
-  gmchange.nogm:
+    default: false
+   gmchange.nogm:
     description: Disable your own gamemode changes by others
-    default: op
+    default: false
   gmchange.creative:
     description: Allowed Creative Mode
-    default: op
+    default: false
