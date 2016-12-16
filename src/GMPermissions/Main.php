@@ -31,24 +31,24 @@ class Main extends PluginBase implements Listener {
             "nopermsgamemodeother" => "You cannot change other players gamemode",
             "playernogm" => "You cannot change that players gamemode",
             "nopermscmode" => "You cannot give that player creative mode"
-            )
+                )
         );
-        
+
         //Updates to config
-        
-        if (!$this->myconfig->get("nopermscmode")){
-        $this->myconfig->set("nopermscmode", "You cannot give that player creative mode");
-        $this->myconfig->save();
+
+        if (!$this->myconfig->get("nopermscmode")) {
+            $this->myconfig->set("nopermscmode", "You cannot give that player creative mode");
+            $this->myconfig->save();
         }
-        
-        if (!$this->myconfig->get("restrictcmode")){
-        $this->myconfig->set("restrictcmode", false);
-        $this->myconfig->save();
+
+        if (!$this->myconfig->get("restrictcmode")) {
+            $this->myconfig->set("restrictcmode", false);
+            $this->myconfig->save();
         }
     }
 
     public function onCommand(CommandSender $issuer, Command $cmd, $label, array $args) {
-             
+
         if ((strtolower($cmd->getName()) == "nogm") && ($issuer instanceof Player) && ($issuer->hasPermission("gmchange.nogm"))) {
             if (isset($this->enabled[strtolower($issuer->getName())])) {
                 unset($this->enabled[strtolower($issuer->getName())]);
@@ -66,13 +66,12 @@ class Main extends PluginBase implements Listener {
             return false;
         }
     }
-    
-     /**
+
+    /**
      * @param PlayerCommandPreprocessEvent $event
      *
      * @priority MONITOR
      */
-
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event) {
 
         $p = $event->getPlayer();
@@ -97,7 +96,7 @@ class Main extends PluginBase implements Listener {
 
             $target = $this->getServer()->getPlayer($args[2]);
 
-            if ($this->myconfig->get("restrictcmode") && ($target instanceof Player) && !$target->hasPermission('gmchange.creative')) {
+            if ($this->myconfig->get("restrictcmode") && ($target instanceof Player) && !$target->hasPermission("gmchange.creative")) {
                 $event->setCancelled(true);
                 $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermscmode"));
                 return false;
@@ -110,4 +109,5 @@ class Main extends PluginBase implements Listener {
             return false;
         }
     }
+
 }
