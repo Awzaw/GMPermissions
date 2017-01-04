@@ -76,6 +76,7 @@ class Main extends PluginBase implements Listener {
 
         $p = $event->getPlayer();
         $msg = $event->getMessage();
+        if (!isset($msg) or $msg == "") return;
         $args = explode(" ", $msg);
 
         if ((strtolower($args[0]) === "/gamemode" || strtolower($args[0]) === "/gm") && (($args[1] === "3" || strtolower($args[1]) === "spectator"))) {
