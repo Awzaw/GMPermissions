@@ -62,42 +62,41 @@ class Main extends PluginBase implements Listener {
                 $issuer->sendMessage("NoGM mode disabled!");
             }
             return true;
-        } else {
-            return false;
         }
     }
-
+    
     /**
      * @param PlayerCommandPreprocessEvent $event
      *
      * @priority MONITOR
      */
+    
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event) {
 
-        $p = $event->getPlayer();
         $msg = $event->getMessage();
-        if (!isset($msg) or $msg == "") return;
         $args = explode(" ", $msg);
+        if (!(strtolower($args[0]) === "/gamemode" || strtolower($args[0]) === "/gm")) return;
+        
+        $p = $event->getPlayer();
+                
+        if (isset($args[1]) && ($args[1] === "3" || strtolower($args[1]) === "spectator")) {
 
-        if ((strtolower($args[0]) === "/gamemode" || strtolower($args[0]) === "/gm") && (($args[1] === "3" || strtolower($args[1]) === "spectator"))) {
-
-            if ($this->myconfig->get("restrictspectator") && !$p->hasPermission("gmchange.spectator")) {
+            if ($this->myconfig->get("restrictspectator") && !($p->hasPermission("gmchange.spectator") || $p->hasPermission("gmchange"))) {
                 $event->setCancelled(true);
                 $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermspectator"));
                 return false;
             }
         }
 
-        if ((strtolower($args[0]) === "/gamemode" || (strtolower($args[0]) === "/gm")) && sizeof($args) > 2 && strtolower($args[2]) !== strtolower($p->getName())) {
-            if (!($p->hasPermission("gmchange.others"))) {
+        if (sizeof($args) > 2 && strtolower($args[2]) !== strtolower($p->getName())) {
+            if (!($p->hasPermission("gmchange.others") || $p->hasPermission("gmchange"))) {
                 $event->setCancelled(true);
                 $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermsgamemodeother"));
                 return false;
             }
 
             $target = $this->getServer()->getPlayer($args[2]);
-
-            if ($this->myconfig->get("restrictcmode") && ($target instanceof Player) && !$target->hasPermission("gmchange.creative")) {
+            if ($this->myconfig->get("restrictcmode") && ($target instanceof Player) && !($target->hasPermission("gmchange.creative") || $target->hasPermission("gmchange"))) {
                 $event->setCancelled(true);
                 $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermscmode"));
                 return false;
@@ -109,6 +108,7 @@ class Main extends PluginBase implements Listener {
             $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("playernogm"));
             return false;
         }
+        echo ("got here");
     }
 
 }
