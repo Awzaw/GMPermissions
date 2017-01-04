@@ -108,7 +108,6 @@ class Main extends PluginBase implements Listener {
             $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("playernogm"));
             return false;
         }
-        echo ("got here");
     }
 
 }
