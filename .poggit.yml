@@ -2,6 +2,7 @@
 branches: master
 projects:
   GMPermissions:
+    icon: gmpermissions.png
     path: ""
     model: default
 ...
