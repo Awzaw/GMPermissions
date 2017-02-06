@@ -1,6 +1,6 @@
 <?php
 
-namespace GMPermissions;
+namespace awzaw\gmpermissions;
 
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\event\Listener;
