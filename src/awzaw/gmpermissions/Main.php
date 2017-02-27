@@ -63,16 +63,11 @@ class Main extends PluginBase implements Listener {
             }
             return true;
         }
+        return true;
     }
     
-    /**
-     * @param PlayerCommandPreprocessEvent $event
-     *
-     * @priority MONITOR
-     */
-    
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event) {
-
+        if ($event->isCancelled()) return;
         $msg = $event->getMessage();
         $args = explode(" ", $msg);
         if (!(strtolower($args[0]) === "/gamemode" || strtolower($args[0]) === "/gm")) return;
