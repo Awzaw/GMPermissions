@@ -67,42 +67,33 @@ class Main extends PluginBase implements Listener {
     }
     
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event) {
-        if ($event->isCancelled()) return;
-        $msg = $event->getMessage();
-        $args = explode(" ", $msg);
-        if (!(strtolower($args[0]) === "/gamemode" || strtolower($args[0]) === "/gm")) return;
-        
-        $p = $event->getPlayer();
+            
+            $msg = explode(" ", strtolower($event->getMessage()));
+            
                 
-        if (isset($args[1]) && ($args[1] === "3" || strtolower($args[1]) === "spectator")) {
-
-            if ($this->myconfig->get("restrictspectator") && !($p->hasPermission("gmchange.spectator") || $p->hasPermission("gmchange"))) {
-                $event->setCancelled(true);
-                $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermspectator"));
-                return false;
+                if ($msg[1] === "c") {
+                    
+                    if ($this->myconfig->get("restrictcmode") === true) {
+                        $event->getPlayer()->sendMessage("CMode is restricted!");
+                        $event->setCancelled();
+                    } elseif (!$event->getPlayer()->hasPermission("gmchange.creative") or !$event->getPlayer()->hasPermission("gmchange")) {
+                        $event->getPlayer()->sendMessage("You don't have permission for CMODE!");
+                        $event->setCancelled();
+                    }
+                    
+                } elseif ($msg[1] === "spectator") {
+                    
+                    if ($this->myconfig->get("restrictspectator") === true) {
+                        $event->getPlayer()->sendMessage("Spectator Mode is restricted!");
+                        $event->setCancelled();
+                    } elseif (!$event->getPlayer()->hasPermission("gmchange.spectator") or !$event->getPlayer()->hasPermission("gmchange")) {
+                        $event->getPlayer()->sendMessage("You don't have perms for Spectator Mode!");
+                        $event->setCancelled();
+                    }
+                    
+                }
+                
             }
-        }
-
-        if (sizeof($args) > 2 && strtolower($args[2]) !== strtolower($p->getName())) {
-            if (!($p->hasPermission("gmchange.others") || $p->hasPermission("gmchange"))) {
-                $event->setCancelled(true);
-                $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermsgamemodeother"));
-                return false;
-            }
-
-            $target = $this->getServer()->getPlayer($args[2]);
-            if ($this->myconfig->get("restrictcmode") && ($target instanceof Player) && !($target->hasPermission("gmchange.creative") || $target->hasPermission("gmchange"))) {
-                $event->setCancelled(true);
-                $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("nopermscmode"));
-                return false;
-            }
-        }
-
-        if (sizeof($args) > 2 && in_array(strtolower($args[2]), $this->enabled)) {
-            $event->setCancelled(true);
-            $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("playernogm"));
-            return false;
-        }
     }
-
+    
 }
