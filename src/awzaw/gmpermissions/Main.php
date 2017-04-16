@@ -70,6 +70,7 @@ class Main extends PluginBase implements Listener {
             
             $msg = explode(" ", strtolower($event->getMessage()));
             
+            if ($msg[0] === "/gamemode" or $msg[0] === "/gm") {
                 
                 if ($msg[1] === "c") {
                     
