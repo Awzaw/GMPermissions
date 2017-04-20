@@ -70,7 +70,7 @@ class Main extends PluginBase implements Listener {
         if ($event->isCancelled()) return;
         $msg = $event->getMessage();
         $args = explode(" ", $msg);
-        if (!(in_array(strtolower($args[0]), ["/gamemode", "/creative", "/spectator" ,"/viewer"]) || substr(strtolower($args[0], 0, 3)) === "/gm")) return;
+        if (!(in_array(strtolower($args[0]), ["/gamemode", "/creative", "/spectator" ,"/viewer"]) || substr(strtolower($args[0]), 0, 3) === "/gm")) return;
         
         $p = $event->getPlayer();
                 
