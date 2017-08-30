@@ -95,7 +95,7 @@ class Main extends PluginBase implements Listener {
             } else {
                 $target = $this->getServer()->getPlayer($args[1]);
             }
-            if ($target->getName() == null or in_array(strtolower($target->getName()), $this->enabled)) {
+            if ($target == null or in_array(strtolower($target->getName()), $this->enabled)) {
                 $event->setCancelled(true);
                 $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("playernogm"));
                 return false;
