@@ -67,10 +67,10 @@ class Main extends PluginBase implements Listener {
     }
     
     public function onPlayerCommand(PlayerCommandPreprocessEvent $event) {
-        if ($event->isCancelled()) return;
+        if ($event->isCancelled()) return true;
         $msg = $event->getMessage();
         $args = explode(" ", $msg);
-        if (!(in_array(strtolower($args[0]), ["/gamemode", "/creative", "/spectator" ,"/viewer"]) || substr(strtolower($args[0]), 0, 3) === "/gm")) return;
+        if (!(in_array(strtolower($args[0]), ["/gamemode", "/creative", "/spectator" ,"/viewer"]) || substr(strtolower($args[0]), 0, 3) === "/gm")) return true;
         
         $p = $event->getPlayer();
                 
@@ -95,7 +95,7 @@ class Main extends PluginBase implements Listener {
             } else {
                 $target = $this->getServer()->getPlayer($args[1]);
             }
-            if (in_array(strtolower($target->getName()), $this->enabled)) {
+            if ($target->getName() == null or in_array(strtolower($target->getName()), $this->enabled)) {
                 $event->setCancelled(true);
                 $p->sendMessage(TEXTFORMAT::RED . $this->myconfig->get("playernogm"));
                 return false;
@@ -106,8 +106,7 @@ class Main extends PluginBase implements Listener {
                 return false;
             }
         }
-
-
+        return true;
     }
 
 }
