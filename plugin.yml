@@ -1,7 +1,7 @@
 name: GMPermissions
 main: awzaw\gmpermissions\Main
-version: 1.2.5
-api: [3.0.0-ALPHA7]
+version: 1.2.5-1.alpha8
+api: [3.0.0-ALPHA7, 3.0.0-ALPHA8]
 load: POSTWORLD
 author: wolfdale/awzaw
 description: Restrict users from changing their own or others gamemode
